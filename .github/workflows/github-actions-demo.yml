@@ -18,7 +18,7 @@ jobs:
       - name: Check profile
         run: sudo hcloud configure show --cli-profile=testAKSK
       - name: Help hcloud
-        run: hcloud VPC CreateSecurityGroupRule/v2 --help
+        run: sudo hcloud VPC CreateSecurityGroupRule/v2 --help
       - name: Add Inbound Rule
         run: |
           sudo yes y | sudo hcloud VPC CreateSecurityGroupRule/v2 --cli-region="cn-east-3" --security_group_id="e65de519-5fba-4f6c-b19e-2634acf2739e" \
