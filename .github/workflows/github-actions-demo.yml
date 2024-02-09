@@ -17,20 +17,10 @@ jobs:
             --cli-secret-key=${{ secrets.HUAWEI_CLOUD_SECRET_ACCESS_KEY }}
       - name: Check profile
         run: sudo hcloud configure show --cli-profile=testAKSK
+      - name: Initial profile
+        run: hcloud configure init
       - name: Add Inbound Rule
         run: |
           sudo hcloud VPC CreateSecurityGroupRule/v2 --cli-region="cn-east-3" --security_group_id e65de519-5fba-4f6c-b19e-2634acf2739e \
             --description deneme --direction ingress --protocol tcp --port_range_max 85 --port_range_min 85 \
             --remote_ip_prefix 192.168.0.0/16 --ethertype IPv4
-
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
