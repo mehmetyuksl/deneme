@@ -32,4 +32,4 @@ jobs:
             --security_group_rule.ethertype="IPv4")
           echo $response
       - name: Get Inbound Rule ID
-        run: echo ${{ steps.rule.outputs.0.security_group_rule }}
+        run: echo ${{ steps.rule.outputs[0].security_group_rule }}
