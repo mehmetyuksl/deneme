@@ -5,16 +5,11 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Change to Root User
-        run: sudo su -
-      - run: echo $HOSTTYPE
       - name: Install Huawei Cloud CLI
         run: |
           sudo curl -sSL https://ap-southeast-3-hwcloudcli.obs.ap-southeast-3.myhuaweicloud.com/cli/latest/hcloud_install.sh -o ./hcloud_install.sh && sudo bash ./hcloud_install.sh -y
       - name: Check The Huawe Cloud CLI
-        run: hcloud version
+        run: sudo hcloud version
 
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
