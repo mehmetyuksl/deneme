@@ -9,6 +9,11 @@ jobs:
         uses: actions/checkout@v2
 
       - run: echo $HOSTTYPE
+      - name: Install Huawei Cloud CLI
+        run: |
+          curl -sSL https://ap-southeast-3-hwcloudcli.obs.ap-southeast-3.myhuaweicloud.com/cli/latest/hcloud_install.sh -o ./hcloud_install.sh && bash ./hcloud_install.sh -y
+      - name: Check The Huawe Cloud CLI
+        run: hcloud version
 
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
