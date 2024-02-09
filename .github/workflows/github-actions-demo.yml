@@ -9,7 +9,7 @@ jobs:
         run: |
           sudo curl -sSL https://ap-southeast-3-hwcloudcli.obs.ap-southeast-3.myhuaweicloud.com/cli/latest/hcloud_install.sh -o ./hcloud_install.sh && sudo bash ./hcloud_install.sh -y
       - name: Check The Huawe Cloud CLI
-        run: sudo yes | sudo hcloud version
+        run: sudo sudo hcloud version
       - name: Set hcloud profile
         run: |
           sudo hcloud configure set --cli-profile=testAKSK --cli-mode=AKSK \
@@ -19,6 +19,6 @@ jobs:
         run: sudo hcloud configure show --cli-profile=testAKSK
       - name: Add Inbound Rule
         run: |
-          sudo yes | sudo hcloud VPC CreateSecurityGroupRule/v2 --cli-region="cn-east-3" --security_group_id e65de519-5fba-4f6c-b19e-2634acf2739e \
-            --description deneme --direction ingress --protocol tcp --port_range_max 85 --port_range_min 85 \
-            --remote_ip_prefix 192.168.0.0/16 --ethertype IPv4
+          sudo sudo hcloud VPC CreateSecurityGroupRule/v2 --cli-region="cn-east-3" --security_group_id="e65de519-5fba-4f6c-b19e-2634acf2739e" \
+            --description="deneme" --direction="ingress" --protocol="tcp" --port_range_max="85" --port_range_min="85" \
+            --remote_ip_prefix="192.168.0.0/16" --ethertype="IPv4"
