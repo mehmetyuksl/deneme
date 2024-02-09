@@ -17,10 +17,11 @@ jobs:
             --cli-secret-key=${{ secrets.HUAWEI_CLOUD_SECRET_ACCESS_KEY }}
       - name: Check profile
         run: sudo hcloud configure show --cli-profile=testAKSK
-      - name: Help hcloud
-        run: sudo hcloud VPC CreateSecurityGroupRule/v2 --help
+#- name: Help hcloud
+#        run: sudo hcloud VPC CreateSecurityGroupRule/v2 --help
       - name: Add Inbound Rule
         run: |
-          sudo yes y | sudo hcloud VPC CreateSecurityGroupRule/v2 --cli-region="cn-east-3" --security_group_id="e65de519-5fba-4f6c-b19e-2634acf2739e" \
-            --description="deneme" --direction="ingress" --protocol="tcp" --port_range_max="85" --port_range_min="85" \
-            --remote_ip_prefix="192.168.0.0/16" --ethertype="IPv4"
+          sudo yes y | sudo hcloud VPC CreateSecurityGroupRule/v2 --cli-region="cn-east-3" --project_id="247351f87e8141ae8b48461ec65bf37e" \
+            --security_group_rule.security_group_id="e65de519-5fba-4f6c-b19e-2634acf2739e" --security_group_rule.description="deneme" \
+            --security_group_rule.direction="ingress" --security_group_rule.protocol="tcp" --security_group_rule.port_range_max="85" \
+            --security_group_rule.port_range_min="85" --security_group_rule.remote_ip_prefix="192.168.0.0/16" --security_group_rule.ethertype="IPv4"
