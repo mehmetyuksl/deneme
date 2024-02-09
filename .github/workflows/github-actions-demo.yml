@@ -7,7 +7,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+      - name: Change to Root User
+        run: sudo su -
       - run: echo $HOSTTYPE
       - name: Install Huawei Cloud CLI
         run: |
