@@ -20,7 +20,8 @@ jobs:
       - name: Add Inbound Rule
         run: |
           sudo hcloud VPC CreateSecurityGroupRule/v2 --cli-region="cn-east-3" --security_group_id e65de519-5fba-4f6c-b19e-2634acf2739e \
-            --description deneme --direction ingress --protocol tcp --port 85 --remote_ip_prefix 192.168.0.0/16 -y
+            --description deneme --direction ingress --protocol tcp --port_range_max 85 --port_range_min 85 \
+            --remote_ip_prefix 192.168.0.0/16 --ethertype IPv4
 
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
