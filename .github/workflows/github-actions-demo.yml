@@ -25,13 +25,14 @@ jobs:
       - name: Add Inbound Rule
         id: rule
         run: |
-          {  
-            sudo echo 'JSON_RESPONSE<<EOF'
-            response=$(sudo hcloud VPC CreateSecurityGroupRule/v2 --cli-region="cn-east-3" --project_id="247351f87e8141ae8b48461ec65bf37e" \
+          response=$(sudo hcloud VPC CreateSecurityGroupRule/v2 --cli-region="cn-east-3" --project_id="247351f87e8141ae8b48461ec65bf37e" \
             --security_group_rule.security_group_id="e65de519-5fba-4f6c-b19e-2634acf2739e" --security_group_rule.description="github action ip" \
             --security_group_rule.direction="ingress" --security_group_rule.protocol="tcp" --security_group_rule.port_range_max="85" \
             --security_group_rule.port_range_min="85" --security_group_rule.remote_ip_prefix="${{ steps.ip.outputs.ipv4 }}/32" \
-            --security_group_rule.ethertype="IPv4")
+            --security_group_rule.ethertype="IPv4") &&
+          {  
+            sudo echo 'JSON_RESPONSE<<EOF'
+            $response
             sudo echo EOF
           } >> "$GITHUB_ENV"
           #echo "result=$response" >> "$GITHUB_OUTPUT"
